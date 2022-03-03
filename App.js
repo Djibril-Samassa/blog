@@ -1,20 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { createContext,} from 'react';
+import { StyleSheet, Text, View, SafeAreaView, } from 'react-native';
+import { createContext, useState,} from 'react';
 import {NativeRouter as Router, Routes, Route} from "react-router-native"
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Timeline from './pages/Timeline'
+
+/* Export du context User*/
+export const UserConext = createContext();
+
+
 export default function App() {
+
+  const [username, setUsername] = useState("");
+
+
+  const usernameValue = {
+    username : username,
+    setUsername: setUsername,
+}
   return (
-    <SafeAreaView>
-      <Router>
-      <Routes>
-        <Route path="/" exact element={<Home/>}/>
-        <Route exact path="/login" exact element={<Login/>}/>
-      </Routes>
-    </Router>
-    </SafeAreaView>
-    
+    <UserConext.Provider value={usernameValue}>
+      <SafeAreaView>
+
+        <Router>
+          <Routes>
+            <Route path="/" exact element={<Home/>}/>
+            <Route exact path="/login" exact element={<Login/>}/>
+            <Route path="/timeline" exact element={<Timeline/>}/>
+          </Routes>
+        </Router>
+      </SafeAreaView>
+    </UserConext.Provider>
+
   );
 }
 

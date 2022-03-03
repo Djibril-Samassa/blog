@@ -1,16 +1,23 @@
-import React from "react";
+import React, { createContext, useState, useContext } from "react";
+import reactDom from "react-dom";
 import { View, Text, TouchableOpacity, StyleSheet,TextInput, SafeAreaView } from "react-native";
 import { useNavigate } from "react-router-native";
-import { Children } from "react/cjs/react.production.min";
+
 
 export default function Home() {
 
     const navigate = useNavigate();
 
     return(
-        <SafeAreaView>
-            <TouchableOpacity>
-                <Text>Se connecter</Text>
+        <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={() => navigate("/login")}>
+                <Text style={{padding: 15}}>Timeline</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate("/login")}>
+                <Text style={{padding: 15}}>Créer un post</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate("/login")}>
+                <Text style={{padding: 15}}>Mon profil</Text>
             </TouchableOpacity>
         </SafeAreaView>
         
@@ -18,27 +25,12 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: "50%",
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    
-    input: {
-        margin: 10,
-        borderWidth: 1,
-		width: 200,
-		padding: 5,
-		borderRadius: 5,
-		borderColor: "lightgrey",
-    },
-    bouton: {
-        width: 200,
-		padding: 5,
-        borderRadius: 5,
+    container:{
         backgroundColor: "red",
-        textAlign: "center"
-    }
+        borderWidth: 1,
+        flexDirection: "row",justifyContent: "space-around",
+        alignItems: "flex-end",
+        marginBottom: "auto",
+    },
 })
+
